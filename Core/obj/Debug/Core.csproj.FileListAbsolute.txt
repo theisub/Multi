@@ -1,0 +1,6 @@
+C:\Users\Basem\Downloads\Code_Grand.Async.1114\CodeDownloads\Core\bin\Debug\Core.dll
+C:\Users\Basem\Downloads\Code_Grand.Async.1114\CodeDownloads\Core\bin\Debug\Core.pdb
+C:\Users\Basem\Downloads\Code_Grand.Async.1114\CodeDownloads\Core\obj\Debug\Core.csprojAssemblyReference.cache
+C:\Users\Basem\Downloads\Code_Grand.Async.1114\CodeDownloads\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
+C:\Users\Basem\Downloads\Code_Grand.Async.1114\CodeDownloads\Core\obj\Debug\Core.dll
+C:\Users\Basem\Downloads\Code_Grand.Async.1114\CodeDownloads\Core\obj\Debug\Core.pdb
