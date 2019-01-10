@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище commandsqlModelContainer" CdmEntityContainer="myContext">
+    <EntitySetMapping Name="tblConcerts">
+      <EntityTypeMapping TypeName="commandsqlModel.tblConcert">
+        <MappingFragment StoreEntitySet="tblConcerts">
+          <ScalarProperty Name="concert_id" ColumnName="concert_id" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="concert_title" ColumnName="concert_title" />
+          <ScalarProperty Name="concert_city" ColumnName="concert_city" />
+          <ScalarProperty Name="concert_place" ColumnName="concert_place" />
+          <ScalarProperty Name="concert_date" ColumnName="concert_date" />
+          <ScalarProperty Name="concert_link" ColumnName="concert_link" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGroups">
+      <EntityTypeMapping TypeName="commandsqlModel.tblGroup">
+        <MappingFragment StoreEntitySet="tblGroups">
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="group_name" ColumnName="group_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSubscriptions">
+      <EntityTypeMapping TypeName="commandsqlModel.tblSubscription">
+        <MappingFragment StoreEntitySet="tblSubscriptions">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="subscription_id" ColumnName="subscription_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="commandsqlModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_city" ColumnName="user_city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblNotifications">
+      <EntityTypeMapping TypeName="commandsqlModel.tblNotification">
+        <MappingFragment StoreEntitySet="tblNotifications">
+          <ScalarProperty Name="concert_id" ColumnName="concert_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="notification_date" ColumnName="notification_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

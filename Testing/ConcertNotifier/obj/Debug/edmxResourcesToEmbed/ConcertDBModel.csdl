@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="commandsqlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblConcert">
+    <Key>
+      <PropertyRef Name="concert_id" />
+    </Key>
+    <Property Name="concert_id" Type="Int32" Nullable="false" />
+    <Property Name="group_id" Type="Int32" Nullable="false" />
+    <Property Name="concert_title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="concert_city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="concert_place" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="concert_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="concert_link" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblGroup" Relationship="Self.concerts_group" FromRole="tblConcerts" ToRole="tblGroups" />
+    <NavigationProperty Name="tblNotifications" Relationship="Self.notifications_concert" FromRole="tblConcerts" ToRole="tblNotifications" />
+  </EntityType>
+  <EntityType Name="tblGroup">
+    <Key>
+      <PropertyRef Name="group_id" />
+    </Key>
+    <Property Name="group_id" Type="Int32" Nullable="false" />
+    <Property Name="group_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblConcerts" Relationship="Self.concerts_group" FromRole="tblGroups" ToRole="tblConcerts" />
+    <NavigationProperty Name="tblSubscriptions" Relationship="Self.subscriptions_group" FromRole="tblGroups" ToRole="tblSubscriptions" />
+  </EntityType>
+  <EntityType Name="tblSubscription">
+    <Key>
+      <PropertyRef Name="subscription_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="group_id" Type="Int32" Nullable="false" />
+    <Property Name="subscription_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblGroup" Relationship="Self.subscriptions_group" FromRole="tblSubscriptions" ToRole="tblGroups" />
+    <NavigationProperty Name="tblUser" Relationship="Self.subscriptions_user" FromRole="tblSubscriptions" ToRole="tblUsers" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="user_city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblSubscriptions" Relationship="Self.subscriptions_user" FromRole="tblUsers" ToRole="tblSubscriptions" />
+    <NavigationProperty Name="tblNotifications" Relationship="Self.notifications_user" FromRole="tblUsers" ToRole="tblNotifications" />
+  </EntityType>
+  <EntityType Name="tblNotification">
+    <Key>
+      <PropertyRef Name="concert_id" />
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="notification_date" />
+    </Key>
+    <Property Name="concert_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="notification_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblConcert" Relationship="Self.notifications_concert" FromRole="tblNotifications" ToRole="tblConcerts" />
+    <NavigationProperty Name="tblUser" Relationship="Self.notifications_user" FromRole="tblNotifications" ToRole="tblUsers" />
+  </EntityType>
+  <Association Name="concerts_group">
+    <End Role="tblGroups" Type="Self.tblGroup" Multiplicity="1" />
+    <End Role="tblConcerts" Type="Self.tblConcert" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGroups">
+        <PropertyRef Name="group_id" />
+      </Principal>
+      <Dependent Role="tblConcerts">
+        <PropertyRef Name="group_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="notifications_concert">
+    <End Role="tblConcerts" Type="Self.tblConcert" Multiplicity="1" />
+    <End Role="tblNotifications" Type="Self.tblNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblConcerts">
+        <PropertyRef Name="concert_id" />
+      </Principal>
+      <Dependent Role="tblNotifications">
+        <PropertyRef Name="concert_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="subscriptions_group">
+    <End Role="tblGroups" Type="Self.tblGroup" Multiplicity="1" />
+    <End Role="tblSubscriptions" Type="Self.tblSubscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGroups">
+        <PropertyRef Name="group_id" />
+      </Principal>
+      <Dependent Role="tblSubscriptions">
+        <PropertyRef Name="group_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="subscriptions_user">
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblSubscriptions" Type="Self.tblSubscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tblSubscriptions">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="notifications_user">
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblNotifications" Type="Self.tblNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tblNotifications">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="myContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblConcerts" EntityType="Self.tblConcert" />
+    <EntitySet Name="tblGroups" EntityType="Self.tblGroup" />
+    <EntitySet Name="tblSubscriptions" EntityType="Self.tblSubscription" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <EntitySet Name="tblNotifications" EntityType="Self.tblNotification" />
+    <AssociationSet Name="concerts_group" Association="Self.concerts_group">
+      <End Role="tblGroups" EntitySet="tblGroups" />
+      <End Role="tblConcerts" EntitySet="tblConcerts" />
+    </AssociationSet>
+    <AssociationSet Name="notifications_concert" Association="Self.notifications_concert">
+      <End Role="tblConcerts" EntitySet="tblConcerts" />
+      <End Role="tblNotifications" EntitySet="tblNotifications" />
+    </AssociationSet>
+    <AssociationSet Name="subscriptions_group" Association="Self.subscriptions_group">
+      <End Role="tblGroups" EntitySet="tblGroups" />
+      <End Role="tblSubscriptions" EntitySet="tblSubscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="subscriptions_user" Association="Self.subscriptions_user">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblSubscriptions" EntitySet="tblSubscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="notifications_user" Association="Self.notifications_user">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblNotifications" EntitySet="tblNotifications" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

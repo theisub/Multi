@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{5E8C58AD-9F54-46D6-918B-9756B316B333}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SearchApiTest/UnitTests.cs">
+    <Files>
+      <File FileName="SearchApiTest/UnitTests.cs" Line="71" Column="27" />
+      <File FileName="SearchApiTest/IntegrationTest.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ConcertSearchApi PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
